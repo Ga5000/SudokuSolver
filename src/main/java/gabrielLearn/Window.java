@@ -3,9 +3,10 @@ package gabrielLearn;
 import javax.swing.*;
 import java.awt.*;
 
+
 public class Window extends JFrame {
     public Window() {
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(new Dimension(500, 500));
         this.setTitle("Sudoku Solver");
         this.setLayout(new BorderLayout());
@@ -25,3 +26,5 @@ public class Window extends JFrame {
         new Window();
     }
 }
+
+

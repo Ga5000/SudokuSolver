@@ -6,16 +6,20 @@ import javax.swing.event.DocumentListener;
 import java.awt.*;
 
 public class MainPanel extends JPanel {
-    private JTextField[][] cells;
+    private  JTextField[][] board;
     private SolveButton solveButton;
 
-    public JTextField[][] getCells() {
-        return cells;
+    public JTextField[][] getBoard() {
+        return board;
+    }
+
+    public void setCells(JTextField[][] board) {
+        this.board = board;
     }
 
     public MainPanel() {
         this.setLayout(new GridLayout(3, 3, 5, 5));
-        cells = new JTextField[9][9];
+        board = new JTextField[9][9];
 
         for (int i = 0; i < 9; i++) {
             JPanel subgridPanel = new JPanel();
@@ -26,7 +30,7 @@ public class MainPanel extends JPanel {
                 JTextField cell = new JTextField();
                 cell.setHorizontalAlignment(JTextField.CENTER);
                 cell.setFont(new Font("SansSerif", Font.BOLD, 20));
-                cells[i][j] = cell;
+                board[i][j] = cell;
                 subgridPanel.add(cell);
 
                 cell.getDocument().addDocumentListener(new DocumentListener() {
