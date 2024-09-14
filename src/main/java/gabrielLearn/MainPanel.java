@@ -4,9 +4,11 @@ import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainPanel extends JPanel {
-    private  JTextField[][] board;
+    private JTextField[][] board;
     private SolveButton solveButton;
 
     public JTextField[][] getBoard() {
@@ -18,7 +20,9 @@ public class MainPanel extends JPanel {
     }
 
     public MainPanel() {
-        this.setLayout(new GridLayout(3, 3, 5, 5));
+        this.setLayout(new BorderLayout());
+
+        JPanel boardPanel = new JPanel(new GridLayout(3, 3, 5, 5));
         board = new JTextField[9][9];
 
         for (int i = 0; i < 9; i++) {
@@ -51,8 +55,27 @@ public class MainPanel extends JPanel {
                 });
             }
 
-            this.add(subgridPanel);
+            boardPanel.add(subgridPanel);
         }
+
+        this.add(boardPanel, BorderLayout.CENTER);
+
+
+        JButton resetButton = new JButton("Reset");
+        resetButton.setFont(new Font("SansSerif", Font.BOLD, 18));
+
+
+        resetButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clearBoard();
+            }
+        });
+
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(resetButton);
+        this.add(buttonPanel, BorderLayout.SOUTH);
     }
 
     public void setSolveButton(SolveButton solveButton) {
@@ -63,6 +86,14 @@ public class MainPanel extends JPanel {
     public void updateButtonState() {
         if (solveButton != null) {
             solveButton.updateButtonState();
+        }
+    }
+
+    private void clearBoard() {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                board[i][j].setText("");
+            }
         }
     }
 }

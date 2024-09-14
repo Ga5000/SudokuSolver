@@ -10,6 +10,7 @@ public class Window extends JFrame {
         this.setSize(new Dimension(500, 500));
         this.setTitle("Sudoku Solver");
         this.setLayout(new BorderLayout());
+        setLocationRelativeTo(null);
 
         MainPanel mainPanel = new MainPanel();
         SolveButton solveButton = new SolveButton(mainPanel);
